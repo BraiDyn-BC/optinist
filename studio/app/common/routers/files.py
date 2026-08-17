@@ -35,13 +35,22 @@ from studio.app.dir_path import DIRPATH
 
 router = APIRouter(prefix="/files", tags=["files"])
 
+# works in possibly the most reasonable way
+LAZY_LOADING = bool(os.getenv("OPTINIST_LAZY_LOADING"))
+
 
 class DirTreeGetter:
     @classmethod
     def get_tree(
-        cls, workspace_id, file_types: List[str], dirname: str = None
+        cls,
+        workspace_id,
+        file_types: List[str],
+        dirname: str = None,
+        lazy: bool = None,
     ) -> List[TreeNode]:
         nodes: List[TreeNode] = []
+        if lazy is None:
+            lazy = LAZY_LOADING
 
         if dirname is None:
             absolute_dirpath = join_filepath([DIRPATH.INPUT_DIR, workspace_id])
@@ -87,12 +96,25 @@ class DirTreeGetter:
                 os.path.isdir(search_dirpath)
                 and len(cls.accept_files(search_dirpath, file_types)) > 0
             ):
+                if lazy:
+                    children = [
+                        TreeNode(
+                            path=os.path.join(relative_path, '.test'),
+                            name='.test',
+                            isdir=False,
+                            nodes=[],
+                            shape=[0, 0]
+                        )
+                    ]
+                else:
+                    children = cls.get_tree(workspace_id, file_types, relative_path)
+
                 nodes.append(
                     TreeNode(
                         path=node_name,
                         name=node_name,
                         isdir=True,
-                        nodes=cls.get_tree(workspace_id, file_types, relative_path),
+                        nodes=children,
                     )
                 )
 
@@ -148,19 +170,41 @@ def update_image_shape(workspace_id, relative_file_path):
     response_model=List[TreeNode],
     dependencies=[Depends(is_workspace_available)],
 )
-async def get_files(workspace_id: str, file_type: str = None):
+async def get_files(workspace_id: str, file_type: str = None, lazy: str = None):
+    if lazy is None:
+        lazy = LAZY_LOADING
+    else:
+        lazy = (int(lazy) == 1)
     if file_type == FILETYPE.IMAGE:
-        return DirTreeGetter.get_tree(workspace_id, ACCEPT_FILE_EXT.TIFF_EXT.value)
+        return DirTreeGetter.get_tree(
+            workspace_id,
+            ACCEPT_FILE_EXT.TIFF_EXT.value,
+            lazy=lazy,
+        )
     elif file_type == FILETYPE.CSV:
-        return DirTreeGetter.get_tree(workspace_id, ACCEPT_FILE_EXT.CSV_EXT.value)
+        return DirTreeGetter.get_tree(
+            workspace_id,
+            ACCEPT_FILE_EXT.CSV_EXT.value,
+            lazy=lazy,
+        )
     elif file_type == FILETYPE.HDF5:
-        return DirTreeGetter.get_tree(workspace_id, ACCEPT_FILE_EXT.HDF5_EXT.value)
+        return DirTreeGetter.get_tree(
+            workspace_id,
+            ACCEPT_FILE_EXT.HDF5_EXT.value,
+            lazy=lazy,
+        )
     elif file_type == FILETYPE.MICROSCOPE:
         return DirTreeGetter.get_tree(
-            workspace_id, ACCEPT_FILE_EXT.MICROSCOPE_EXT.value
+            workspace_id,
+            ACCEPT_FILE_EXT.MICROSCOPE_EXT.value,
+            lazy=lazy,
         )
     elif file_type == FILETYPE.MATLAB:
-        return DirTreeGetter.get_tree(workspace_id, ACCEPT_FILE_EXT.MATLAB_EXT.value)
+        return DirTreeGetter.get_tree(
+            workspace_id,
+            ACCEPT_FILE_EXT.MATLAB_EXT.value,
+            lazy=lazy,
+        )
     else:
         return []
 

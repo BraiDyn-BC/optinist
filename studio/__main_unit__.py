@@ -44,6 +44,12 @@ async def lifespan(app: FastAPI):
     logger = AppLogger.get_logger()
     logger.info(f'"Studio" application startup complete. [mode: {mode}]')
 
+    # confirmation of the data directory
+    # NOTE: the actual directory to be prompted (in the standalone mode) would be:
+    # ${DIRPATH.DATA_DIR}/input/1
+    logger.info(f"rootpath={DIRPATH.DATA_DIR}")
+    logger.info(f"lazy-loading={files.LAZY_LOADING}")
+
     yield
 
     # Shutdown event
