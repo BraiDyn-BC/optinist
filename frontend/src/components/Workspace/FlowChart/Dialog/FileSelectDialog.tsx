@@ -32,14 +32,21 @@ import { TreeView } from "@mui/x-tree-view/TreeView"
 import { FILE_TREE_TYPE, FILE_TREE_TYPE_SET } from "api/files/Files"
 import { ConfirmDialog } from "components/common/ConfirmDialog"
 import { DialogContext } from "components/Workspace/FlowChart/Dialog/DialogContext"
-import { deleteFile, getFilesTree } from "store/slice/FilesTree/FilesTreeAction"
+import {
+  deleteFile,
+  getFilesTree,
+  getDirectoryContents,
+} from "store/slice/FilesTree/FilesTreeAction"
 import {
   selectFilesIsLatest,
   selectFilesIsLoading,
   selectFilesTreeNodes,
 } from "store/slice/FilesTree/FilesTreeSelectors"
 import { TreeNodeType } from "store/slice/FilesTree/FilesTreeType"
-import { getNodeByPath } from "store/slice/FilesTree/FilesTreeUtils"
+import {
+  getNodeByPath,
+  hasDirectoryBeenRetrieved,
+} from "store/slice/FilesTree/FilesTreeUtils"
 import { updateShape } from "store/slice/FileUploader/FileUploaderActions"
 import { selectPipelineLatestUid } from "store/slice/Pipeline/PipelineSelectors"
 import { selectCurrentWorkspaceId } from "store/slice/Workspace/WorkspaceSelector"
@@ -148,6 +155,13 @@ const FileTreeView = memo(function FileTreeView({
 }: FileTreeViewProps) {
   const [tree, isLoading] = useFileTree(fileType)
   const [initialized, setInitialized] = useState(false)
+  const [expanded, setExpanded] = useState<string[]>([])
+
+  // FIXME: temporary states definitions for lazy loading.
+  //        could be better hiding up, somewhere in a
+  //        separate function.
+  const dispatch = useDispatch<AppDispatch>()
+  const workspaceId = useSelector(selectCurrentWorkspaceId)
 
   // Helper function to check if a file exists in the tree
   const isFileInTree = (path: string, tree: TreeNodeType[] | null): boolean => {
@@ -191,6 +205,7 @@ const FileTreeView = memo(function FileTreeView({
       }
     }
   }
+
   const onCheckDir = (path: string, checked: boolean) => {
     if (tree != null && Array.isArray(selectedFilePath)) {
       const node = getNodeByPath(path, tree)
@@ -213,6 +228,20 @@ const FileTreeView = memo(function FileTreeView({
       }
     }
   }
+
+  // for lazy loading
+  const queryChildNodes = (event: SyntheticEvent, nodeIds: string[]) => {
+    const newlyExpanded = nodeIds.filter((id) => !expanded.includes(id))
+    if (newlyExpanded.length > 0) {
+      // eslint-disable-next-line no-console
+      newlyExpanded.forEach((path) => {
+        if (workspaceId && tree && !hasDirectoryBeenRetrieved(path, tree)) {
+          dispatch(getDirectoryContents({ workspaceId, fileType, path }))
+        }
+      })
+    }
+    setExpanded(nodeIds)
+  }
   return (
     <div>
       {isLoading && <LinearProgress />}
@@ -228,7 +257,11 @@ const FileTreeView = memo(function FileTreeView({
           <Divider />
         </>
       ) : null}
-      <TreeView disableSelection={multiSelect} multiSelect={multiSelect}>
+      <TreeView
+        disableSelection={multiSelect}
+        multiSelect={multiSelect}
+        onNodeToggle={queryChildNodes}
+      >
         {tree?.map((node) => (
           <TreeNode
             fileType={fileType}

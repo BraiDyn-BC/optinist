@@ -99,8 +99,8 @@ class DirTreeGetter:
                 if lazy:
                     children = [
                         TreeNode(
-                            path=join_filepath([relative_path, '.test']),
-                            name='.test',
+                            path=join_filepath([relative_path, '.lazy_loaded']),
+                            name='.lazy_loaded',
                             isdir=False,
                             nodes=[],
                             shape=[0, 0]

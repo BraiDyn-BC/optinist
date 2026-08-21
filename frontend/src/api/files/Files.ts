@@ -44,10 +44,12 @@ export type GetStatusViaUrl = {
 export async function getFilesTreeApi(
   workspaceId: number,
   fileType: FILE_TREE_TYPE,
+  path?: string,
 ): Promise<TreeNodeTypeDTO[]> {
   const response = await axios.get(`${BASE_URL}/files/${workspaceId}`, {
     params: {
       file_type: fileType,
+      path: path,
     },
   })
   return response.data

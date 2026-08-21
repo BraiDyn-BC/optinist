@@ -20,6 +20,34 @@ export function convertToTreeNodeType(dto: TreeNodeTypeDTO[]): TreeNodeType[] {
   )
 }
 
+export function updateDirectoryContents(
+  path: string,
+  tree: TreeNodeType[],
+  children: TreeNodeTypeDTO[],
+): TreeNodeType[] {
+  return tree.map((node) => {
+    if (node.path == path) {
+      return {
+        path: node.path,
+        name: node.name,
+        isDir: true,
+        nodes: convertToTreeNodeType(children),
+        shape: node.shape,
+      }
+    } else if (node.isDir) {
+      return {
+        path: node.path,
+        name: node.name,
+        isDir: true,
+        nodes: updateDirectoryContents(path, node.nodes, children),
+        shape: node.shape,
+      }
+    } else {
+      return node
+    }
+  })
+}
+
 export function isDirNodeByPath(path: string, tree: TreeNodeType[]): boolean {
   const node = getNodeByPath(path, tree)
   if (node != null) {
@@ -48,4 +76,16 @@ export function getNodeByPath(
     }
   }
   return targetNode
+}
+
+export function hasDirectoryBeenRetrieved(
+  path: string,
+  tree: TreeNodeType[],
+): boolean {
+  const node = getNodeByPath(path, tree)
+  if (node != null && node.isDir) {
+    return node.nodes.filter((node) => node.name == ".lazy_loaded").length == 0
+  } else {
+    throw new Error(`failed to get node: ${path}`)
+  }
 }

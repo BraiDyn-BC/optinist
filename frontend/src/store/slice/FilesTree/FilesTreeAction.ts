@@ -23,6 +23,21 @@ export const getFilesTree = createAsyncThunk<
   },
 )
 
+export const getDirectoryContents = createAsyncThunk<
+  TreeNodeTypeDTO[],
+  { workspaceId: number; fileType: FILE_TREE_TYPE; path: string }
+>(
+  `${FILES_TREE_SLICE_NAME}/getDirectoryContents`,
+  async ({ workspaceId, fileType, path }, thunkAPI) => {
+    try {
+      const response = await getFilesTreeApi(workspaceId, fileType, path)
+      return response
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e)
+    }
+  },
+)
+
 export const deleteFile = createAsyncThunk<
   boolean,
   { workspaceId: number; fileName: string; fileType: FILE_TREE_TYPE }

@@ -25,3 +25,5 @@ tensorflow-*.whl
 
 .env*
 !*.env.example
+
+.optinist-storage/

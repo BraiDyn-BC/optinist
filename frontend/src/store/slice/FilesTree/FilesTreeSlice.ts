@@ -3,12 +3,19 @@ import { enqueueSnackbar } from "notistack"
 import { createSlice } from "@reduxjs/toolkit"
 
 import { FILE_TREE_TYPE_SET } from "api/files/Files"
-import { getFilesTree, deleteFile } from "store/slice/FilesTree/FilesTreeAction"
+import {
+  getFilesTree,
+  getDirectoryContents,
+  deleteFile,
+} from "store/slice/FilesTree/FilesTreeAction"
 import {
   FilesTree,
   FILES_TREE_SLICE_NAME,
 } from "store/slice/FilesTree/FilesTreeType"
-import { convertToTreeNodeType } from "store/slice/FilesTree/FilesTreeUtils"
+import {
+  convertToTreeNodeType,
+  updateDirectoryContents,
+} from "store/slice/FilesTree/FilesTreeUtils"
 import { uploadFile } from "store/slice/FileUploader/FileUploaderActions"
 import { FILE_TYPE_SET } from "store/slice/InputNode/InputNodeType"
 import { importSampleData } from "store/slice/Workflow/WorkflowActions"
@@ -31,6 +38,24 @@ export const filesTreeSlice = createSlice({
       .addCase(getFilesTree.fulfilled, (state, action) => {
         const { fileType } = action.meta.arg
         state[fileType].tree = convertToTreeNodeType(action.payload)
+        state[fileType].isLatest = true
+        state[fileType].isLoading = false
+      })
+      .addCase(getDirectoryContents.pending, (state, action) => {
+        const { fileType } = action.meta.arg
+        state[fileType] = {
+          ...state[fileType],
+          isLoading: true,
+          isLatest: false,
+        }
+      })
+      .addCase(getDirectoryContents.fulfilled, (state, action) => {
+        const { fileType, path } = action.meta.arg
+        state[fileType].tree = updateDirectoryContents(
+          path,
+          state[fileType].tree,
+          action.payload,
+        )
         state[fileType].isLatest = true
         state[fileType].isLoading = false
       })
