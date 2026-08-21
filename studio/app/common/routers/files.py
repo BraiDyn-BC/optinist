@@ -99,7 +99,7 @@ class DirTreeGetter:
                 if lazy:
                     children = [
                         TreeNode(
-                            path=os.path.join(relative_path, '.test'),
+                            path=join_filepath([relative_path, '.test']),
                             name='.test',
                             isdir=False,
                             nodes=[],
@@ -111,7 +111,7 @@ class DirTreeGetter:
 
                 nodes.append(
                     TreeNode(
-                        path=node_name,
+                        path=relative_path,
                         name=node_name,
                         isdir=True,
                         nodes=children,
@@ -170,7 +170,12 @@ def update_image_shape(workspace_id, relative_file_path):
     response_model=List[TreeNode],
     dependencies=[Depends(is_workspace_available)],
 )
-async def get_files(workspace_id: str, file_type: str = None, lazy: str = None):
+async def get_files(
+    workspace_id: str,
+    file_type: str = None,
+    path: str = None,
+    lazy: str = None
+):
     if lazy is None:
         lazy = LAZY_LOADING
     else:
@@ -179,30 +184,35 @@ async def get_files(workspace_id: str, file_type: str = None, lazy: str = None):
         return DirTreeGetter.get_tree(
             workspace_id,
             ACCEPT_FILE_EXT.TIFF_EXT.value,
+            dirname=path,
             lazy=lazy,
         )
     elif file_type == FILETYPE.CSV:
         return DirTreeGetter.get_tree(
             workspace_id,
             ACCEPT_FILE_EXT.CSV_EXT.value,
+            dirname=path,
             lazy=lazy,
         )
     elif file_type == FILETYPE.HDF5:
         return DirTreeGetter.get_tree(
             workspace_id,
             ACCEPT_FILE_EXT.HDF5_EXT.value,
+            dirname=path,
             lazy=lazy,
         )
     elif file_type == FILETYPE.MICROSCOPE:
         return DirTreeGetter.get_tree(
             workspace_id,
             ACCEPT_FILE_EXT.MICROSCOPE_EXT.value,
+            dirname=path,
             lazy=lazy,
         )
     elif file_type == FILETYPE.MATLAB:
         return DirTreeGetter.get_tree(
             workspace_id,
             ACCEPT_FILE_EXT.MATLAB_EXT.value,
+            dirname=path,
             lazy=lazy,
         )
     else:
