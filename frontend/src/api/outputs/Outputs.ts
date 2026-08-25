@@ -262,3 +262,21 @@ export async function getPieDataApi(
   const response = await axios.get(`${BASE_URL}/outputs/data/${path}`, {})
   return response.data
 }
+
+export type Thorlabs2PExperimentData = string // for the time being
+
+export async function getThorlabs2PExperimentDataApi(
+  path: string,
+): Promise<{ data: Thorlabs2PExperimentData }> {
+  const response = await axios.get(`${BASE_URL}/outputs/data/${path}`, {})
+  return response.data
+}
+
+export type WidefieldExperimentData = string // for the time being
+
+export async function getWidefieldExperimentDataApi(
+  path: string,
+): Promise<{ data: WidefieldExperimentData }> {
+  const response = await axios.get(`${BASE_URL}/outputs/data/${path}`, {})
+  return response.data
+}

@@ -8,6 +8,8 @@ export const FILE_TYPE_SET = {
   BEHAVIOR: "behavior",
   MATLAB: "matlab",
   MICROSCOPE: "microscope",
+  THORLABS2P: "thorlabs2p",
+  WIDEFIELD: "widefield",
 } as const
 
 export type FILE_TYPE = (typeof FILE_TYPE_SET)[keyof typeof FILE_TYPE_SET]
@@ -22,6 +24,8 @@ export type InputNodeType =
   | HDF5InputNode
   | MatlabInputNode
   | MicroscopeInputNode
+  | Thorlabs2PImagingExperimentNode
+  | WidefieldImagingExperimentNode
 
 interface InputNodeBaseType<
   T extends FILE_TYPE,
@@ -62,5 +66,15 @@ export interface HDF5InputNode
 
 export interface MicroscopeInputNode
   extends InputNodeBaseType<"microscope", Record<never, never>> {
+  selectedFilePath?: string
+}
+
+export interface Thorlabs2PImagingExperimentNode
+  extends InputNodeBaseType<"thorlabs2p", Record<never, never>> {
+  selectedFilePath?: string
+}
+
+export interface WidefieldImagingExperimentNode
+  extends InputNodeBaseType<"widefield", Record<never, never>> {
   selectedFilePath?: string
 }

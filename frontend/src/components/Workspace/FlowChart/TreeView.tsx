@@ -91,7 +91,7 @@ export const AlgorithmTreeView = memo(function AlgorithmTreeView() {
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpandIcon={<ChevronRightIcon />}
     >
-      <TreeItem nodeId="Data" label="Data">
+      <TreeItem nodeId="Data" label="Files">
         <InputNodeComponent
           fileName={"image"}
           nodeName={"imageData"}
@@ -128,7 +128,19 @@ export const AlgorithmTreeView = memo(function AlgorithmTreeView() {
           fileType={FILE_TYPE_SET.MICROSCOPE}
         />
       </TreeItem>
-      <TreeItem nodeId="Algorithm" label="Algorithm">
+      <TreeItem nodeId="Experiment" label="Experiments">
+        <InputNodeComponent
+          fileName={"thorlabs2p"}
+          nodeName={"thorlabs2pData"}
+          fileType={FILE_TYPE_SET.THORLABS2P}
+        />
+        <InputNodeComponent
+          fileName={"widefield"}
+          nodeName={"widefieldData"}
+          fileType={FILE_TYPE_SET.WIDEFIELD}
+        />
+      </TreeItem>
+      <TreeItem nodeId="Algorithm" label="Algorithms">
         {Object.entries(algoList).map(([name, node], i) => (
           <AlgoNodeComponentRecursive
             name={name}
@@ -190,6 +202,15 @@ const InputNodeComponent = memo(function InputNodeComponent({
         case FILE_TYPE_SET.MICROSCOPE:
           reactFlowNodeType = REACT_FLOW_NODE_TYPE_KEY.MicroscopeFileNode
           fileType = FILE_TYPE_SET.MICROSCOPE
+          break
+        case FILE_TYPE_SET.THORLABS2P:
+          reactFlowNodeType = REACT_FLOW_NODE_TYPE_KEY.Thorlabs2PExperimentNode
+          fileType = FILE_TYPE_SET.THORLABS2P
+          break
+        case FILE_TYPE_SET.WIDEFIELD:
+          reactFlowNodeType =
+            REACT_FLOW_NODE_TYPE_KEY.WidefieldImagingExperimentNode
+          fileType = FILE_TYPE_SET.WIDEFIELD
           break
       }
       const newNode = {

@@ -4,6 +4,8 @@ import {
   isImageInputNode,
   isMatlabInputNode,
   isMicroscopeInputNode,
+  isThorlabs2PImagingExperimentNode,
+  isWidefieldImagingExperimentNode,
 } from "store/slice/InputNode/InputNodeUtils"
 import { RootState } from "store/store"
 
@@ -67,6 +69,26 @@ export const selectMicroscopeInputNodeSelectedFilePath =
   (nodeId: string) => (state: RootState) => {
     const node = selectInputNodeById(nodeId)(state)
     if (isMicroscopeInputNode(node)) {
+      return node.selectedFilePath
+    } else {
+      throw new Error("invalid input node type")
+    }
+  }
+
+export const selectThorlabs2PImagingExperimentNodeSelectedFilePath =
+  (nodeId: string) => (state: RootState) => {
+    const node = selectInputNodeById(nodeId)(state)
+    if (isThorlabs2PImagingExperimentNode(node)) {
+      return node.selectedFilePath
+    } else {
+      throw new Error("invalid input node type")
+    }
+  }
+
+export const selectWidefieldImagingExperimentNodeSelectedFilePath =
+  (nodeId: string) => (state: RootState) => {
+    const node = selectInputNodeById(nodeId)(state)
+    if (isWidefieldImagingExperimentNode(node)) {
       return node.selectedFilePath
     } else {
       throw new Error("invalid input node type")

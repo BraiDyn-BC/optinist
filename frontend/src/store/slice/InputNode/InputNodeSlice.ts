@@ -150,6 +150,18 @@ export const inputNodeSlice = createSlice({
                 param: {},
               }
               break
+            case FILE_TYPE_SET.THORLABS2P:
+              state[node.id] = {
+                fileType,
+                param: {},
+              }
+              break
+            case FILE_TYPE_SET.WIDEFIELD:
+              state[node.id] = {
+                fileType,
+                param: {},
+              }
+              break
           }
         }
       })
@@ -210,6 +222,16 @@ export const inputNodeSlice = createSlice({
                   fileType: FILE_TYPE_SET.MICROSCOPE,
                   param: {},
                 }
+              } else if (node.data.fileType === FILE_TYPE_SET.THORLABS2P) {
+                newState[node.id] = {
+                  fileType: FILE_TYPE_SET.THORLABS2P,
+                  param: {},
+                }
+              } else if (node.data.fileType === FILE_TYPE_SET.WIDEFIELD) {
+                newState[node.id] = {
+                  fileType: FILE_TYPE_SET.WIDEFIELD,
+                  param: {},
+                }
               }
             }
           })
@@ -252,6 +274,18 @@ export const inputNodeSlice = createSlice({
                 } else if (node.data.fileType === FILE_TYPE_SET.MICROSCOPE) {
                   newState[node.id] = {
                     fileType: FILE_TYPE_SET.MICROSCOPE,
+                    selectedFilePath: node.data.path as string,
+                    param: {},
+                  }
+                } else if (node.data.fileType === FILE_TYPE_SET.THORLABS2P) {
+                  newState[node.id] = {
+                    fileType: FILE_TYPE_SET.THORLABS2P,
+                    selectedFilePath: node.data.path as string,
+                    param: {},
+                  }
+                } else if (node.data.fileType === FILE_TYPE_SET.WIDEFIELD) {
+                  newState[node.id] = {
+                    fileType: FILE_TYPE_SET.WIDEFIELD,
                     selectedFilePath: node.data.path as string,
                     param: {},
                   }

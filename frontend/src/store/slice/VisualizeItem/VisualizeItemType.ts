@@ -55,6 +55,8 @@ export type DisplayDataItem =
   | PieItem
   | PolarItem
   | MatlabItem
+  | Thorlabs2PExperimentItem
+  | WidefieldExperimentItem
 
 export interface DisplayDataItemBaseType extends ItemBaseType<"displayData"> {
   filePath: string | null
@@ -171,4 +173,12 @@ export interface PieItem extends DisplayDataItemBaseType {
 export interface PolarItem extends DisplayDataItemBaseType {
   dataType: typeof DATA_TYPE_SET.POLAR
   selectedIndex: number
+}
+
+export interface Thorlabs2PExperimentItem extends DisplayDataItemBaseType {
+  dataType: typeof DATA_TYPE_SET.THORLABS2P
+}
+
+export interface WidefieldExperimentItem extends DisplayDataItemBaseType {
+  dataType: typeof DATA_TYPE_SET.WIDEFIELD
 }

@@ -12,6 +12,8 @@ import {
   PieData,
   PolarData,
   MatlabData,
+  Thorlabs2PExperimentData,
+  WidefieldExperimentData,
 } from "api/outputs/Outputs"
 import { StatusROI } from "components/Workspace/Visualize/Plot/ImagePlot"
 
@@ -80,6 +82,8 @@ export const DATA_TYPE_SET = {
   PIE: "pie",
   POLAR: "polar",
   MATLAB: "matlab",
+  THORLABS2P: "thorlabs2p",
+  WIDEFIELD: "widefield",
 } as const
 
 export type DATA_TYPE = (typeof DATA_TYPE_SET)[keyof typeof DATA_TYPE_SET]
@@ -151,3 +155,9 @@ export interface PolarDisplayData extends BaseDisplay<"polar", PolarData> {
   columns: number[]
   index: number[]
 }
+
+export interface Thorlabs2PExperimentDisplayData
+  extends BaseDisplay<"thorlabs2p", Thorlabs2PExperimentData> {}
+
+export interface WidefieldExperimentDisplayData
+  extends BaseDisplay<"widefield", WidefieldExperimentData> {}

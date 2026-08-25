@@ -6,6 +6,8 @@ import {
   FILE_TYPE_SET,
   MatlabInputNode,
   MicroscopeInputNode,
+  Thorlabs2PImagingExperimentNode,
+  WidefieldImagingExperimentNode,
 } from "store/slice/InputNode/InputNodeType"
 
 export function isImageInputNode(
@@ -36,4 +38,16 @@ export function isMicroscopeInputNode(
   inputNode: InputNodeType,
 ): inputNode is MicroscopeInputNode {
   return inputNode.fileType === FILE_TYPE_SET.MICROSCOPE
+}
+
+export function isThorlabs2PImagingExperimentNode(
+  inputNode: InputNodeType,
+): inputNode is Thorlabs2PImagingExperimentNode {
+  return inputNode.fileType === FILE_TYPE_SET.THORLABS2P
+}
+
+export function isWidefieldImagingExperimentNode(
+  inputNode: InputNodeType,
+): inputNode is WidefieldImagingExperimentNode {
+  return inputNode.fileType === FILE_TYPE_SET.WIDEFIELD
 }

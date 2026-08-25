@@ -31,6 +31,8 @@ import {
   PieItem,
   PolarItem,
   MatlabItem,
+  Thorlabs2PExperimentItem,
+  WidefieldExperimentItem,
   VISUALIZE_ITEM_SLICE_NAME,
 } from "store/slice/VisualizeItem/VisualizeItemType"
 import {
@@ -175,6 +177,14 @@ const matlabItemInitialValue: MatlabItem = {
   setIndex: false,
   transpose: false,
 }
+const thorlabsExperimentInitialValue: Thorlabs2PExperimentItem = {
+  ...displayDataCommonInitialValue,
+  dataType: DATA_TYPE_SET.THORLABS2P,
+}
+const widefieldExperimentInitialValue: WidefieldExperimentItem = {
+  ...displayDataCommonInitialValue,
+  dataType: DATA_TYPE_SET.WIDEFIELD,
+}
 
 function getDisplayDataItemInitialValue(dataType: DATA_TYPE) {
   switch (dataType) {
@@ -210,6 +220,10 @@ function getDisplayDataItemInitialValue(dataType: DATA_TYPE) {
       return polarItemInitialValue
     case DATA_TYPE_SET.MATLAB:
       return matlabItemInitialValue
+    case DATA_TYPE_SET.THORLABS2P:
+      return thorlabsExperimentInitialValue
+    case DATA_TYPE_SET.WIDEFIELD:
+      return widefieldExperimentInitialValue
   }
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "optinist",
-  "version": "2.2.3",
+  "version": "2.2.5a0",
   "engines": {
     "node": ">=20.0.0"
   },

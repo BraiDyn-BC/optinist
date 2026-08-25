@@ -7,6 +7,8 @@ import { HDF5FileNode } from "components/Workspace/FlowChart/FlowChartNode/HDF5F
 import { ImageFileNode } from "components/Workspace/FlowChart/FlowChartNode/ImageFileNode"
 import { MatlabFileNode } from "components/Workspace/FlowChart/FlowChartNode/MatlabFileNode"
 import { MicroscopeFileNode } from "components/Workspace/FlowChart/FlowChartNode/MicroscopeFileNode"
+import { Thorlabs2PImagingExperimentNode } from "components/Workspace/FlowChart/FlowChartNode/Thorlabs2PImagingExperimentNode"
+import { WidefieldImagingExperimentNode } from "components/Workspace/FlowChart/FlowChartNode/WidefieldImagingExperimentNode"
 
 export const reactFlowNodeTypes = {
   ImageFileNode,
@@ -17,6 +19,8 @@ export const reactFlowNodeTypes = {
   FluoFileNode,
   BehaviorFileNode,
   MicroscopeFileNode,
+  Thorlabs2PImagingExperimentNode,
+  WidefieldImagingExperimentNode,
 } as const
 
 export const reactFlowEdgeTypes = {
