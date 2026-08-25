@@ -49,6 +49,7 @@ async def lifespan(app: FastAPI):
     # ${DIRPATH.DATA_DIR}/input/1
     logger.info(f"rootpath={DIRPATH.DATA_DIR}")
     logger.info(f"lazy-loading={files.LAZY_LOADING}")
+    logger.info(f"conda-dir={DIRPATH.CONDAENV_DIR}")
 
     yield
 

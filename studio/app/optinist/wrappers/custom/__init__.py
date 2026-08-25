@@ -6,5 +6,5 @@ custom_wrapper_dict = {
             "function": my_function,
             "conda_name": "custom",
         },
-    }
+    },
 }
