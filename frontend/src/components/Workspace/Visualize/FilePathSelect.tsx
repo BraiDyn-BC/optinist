@@ -234,5 +234,9 @@ function toDataTypeFromFileType(fileType: FILE_TYPE) {
       return DATA_TYPE_SET.THORLABS2P
     case FILE_TYPE_SET.WIDEFIELD:
       return DATA_TYPE_SET.WIDEFIELD
+    case FILE_TYPE_SET.BRUKER_MRI:
+      return DATA_TYPE_SET.BRUKER_MRI
+    case FILE_TYPE_SET.BRUKER_CT:
+      return DATA_TYPE_SET.BRUKER_CT
   }
 }

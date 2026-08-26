@@ -130,14 +130,24 @@ export const AlgorithmTreeView = memo(function AlgorithmTreeView() {
       </TreeItem>
       <TreeItem nodeId="Experiment" label="Experiments">
         <InputNodeComponent
-          fileName={"thorlabs2p"}
+          fileName={"Thorlabs2P"}
           nodeName={"thorlabs2pData"}
           fileType={FILE_TYPE_SET.THORLABS2P}
         />
         <InputNodeComponent
-          fileName={"widefield"}
+          fileName={"Widefield"}
           nodeName={"widefieldData"}
           fileType={FILE_TYPE_SET.WIDEFIELD}
+        />
+        <InputNodeComponent
+          fileName={"BrukerMRI"}
+          nodeName={"brukerMRIData"}
+          fileType={FILE_TYPE_SET.BRUKER_MRI}
+        />
+        <InputNodeComponent
+          fileName={"BrukerCT"}
+          nodeName={"brukerCTData"}
+          fileType={FILE_TYPE_SET.BRUKER_CT}
         />
       </TreeItem>
       <TreeItem nodeId="Algorithm" label="Algorithms">
@@ -211,6 +221,14 @@ const InputNodeComponent = memo(function InputNodeComponent({
           reactFlowNodeType =
             REACT_FLOW_NODE_TYPE_KEY.WidefieldImagingExperimentNode
           fileType = FILE_TYPE_SET.WIDEFIELD
+          break
+        case FILE_TYPE_SET.BRUKER_MRI:
+          reactFlowNodeType = REACT_FLOW_NODE_TYPE_KEY.BrukerMRIExperimentNode
+          fileType = FILE_TYPE_SET.BRUKER_MRI
+          break
+        case FILE_TYPE_SET.BRUKER_CT:
+          reactFlowNodeType = REACT_FLOW_NODE_TYPE_KEY.BrukerCTExperimentNode
+          fileType = FILE_TYPE_SET.BRUKER_CT
           break
       }
       const newNode = {

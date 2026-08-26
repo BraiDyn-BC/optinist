@@ -18,16 +18,16 @@ import {
 } from "store/slice/InputNode/InputNodeSelectors"
 import { FILE_TYPE_SET } from "store/slice/InputNode/InputNodeType"
 
-export const WidefieldImagingExperimentNode = memo(function MicroscopeFileNode(
-  element: NodeProps,
-) {
-  const defined = useSelector(selectInputNodeDefined(element.id))
-  if (defined) {
-    return <WidefieldNodeImple {...element} />
-  } else {
-    return null
-  }
-})
+export const WidefieldImagingExperimentNode = memo(
+  function WidefieldImagingExperimentNode(element: NodeProps) {
+    const defined = useSelector(selectInputNodeDefined(element.id))
+    if (defined) {
+      return <WidefieldNodeImple {...element} />
+    } else {
+      return null
+    }
+  },
+)
 
 const WidefieldNodeImple = memo(function WidefieldNodeImple({
   id: nodeId,

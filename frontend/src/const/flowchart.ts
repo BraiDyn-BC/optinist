@@ -37,6 +37,8 @@ export const REACT_FLOW_NODE_TYPE_KEY = {
   MicroscopeFileNode: "MicroscopeFileNode",
   Thorlabs2PExperimentNode: "Thorlabs2PImagingExperimentNode",
   WidefieldImagingExperimentNode: "WidefieldImagingExperimentNode",
+  BrukerMRIExperimentNode: "BrukerMRIExperimentNode",
+  BrukerCTExperimentNode: "BrukerCTExperimentNode",
 } as const
 
 export type REACT_FLOW_NODE_TYPE =

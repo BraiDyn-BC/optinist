@@ -1,6 +1,8 @@
 import { CustomEdge } from "components/Workspace/FlowChart/CustomEdge"
 import { AlgorithmNode } from "components/Workspace/FlowChart/FlowChartNode/AlgorithmNode"
 import { BehaviorFileNode } from "components/Workspace/FlowChart/FlowChartNode/BehaviorFileNode"
+import { BrukerCTExperimentNode } from "components/Workspace/FlowChart/FlowChartNode/BrukerCTExperimentNode"
+import { BrukerMRIExperimentNode } from "components/Workspace/FlowChart/FlowChartNode/BrukerMRIExperimentNode"
 import { CsvFileNode } from "components/Workspace/FlowChart/FlowChartNode/CsvFileNode"
 import { FluoFileNode } from "components/Workspace/FlowChart/FlowChartNode/FluoFileNode"
 import { HDF5FileNode } from "components/Workspace/FlowChart/FlowChartNode/HDF5FileNode"
@@ -21,6 +23,8 @@ export const reactFlowNodeTypes = {
   MicroscopeFileNode,
   Thorlabs2PImagingExperimentNode,
   WidefieldImagingExperimentNode,
+  BrukerMRIExperimentNode,
+  BrukerCTExperimentNode,
 } as const
 
 export const reactFlowEdgeTypes = {

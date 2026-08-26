@@ -280,3 +280,21 @@ export async function getWidefieldExperimentDataApi(
   const response = await axios.get(`${BASE_URL}/outputs/data/${path}`, {})
   return response.data
 }
+
+export type BrukerMRIExperimentData = string // for the time being
+
+export async function getBrukerMRIExperimentDataApi(
+  path: string,
+): Promise<{ data: BrukerMRIExperimentData }> {
+  const response = await axios.get(`${BASE_URL}/outputs/data/${path}`, {})
+  return response.data
+}
+
+export type BrukerCTExperimentData = string // for the time being
+
+export async function getBrukerCTExperimentDataApi(
+  path: string,
+): Promise<{ data: BrukerCTExperimentData }> {
+  const response = await axios.get(`${BASE_URL}/outputs/data/${path}`, {})
+  return response.data
+}

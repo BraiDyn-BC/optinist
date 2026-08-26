@@ -162,6 +162,18 @@ export const inputNodeSlice = createSlice({
                 param: {},
               }
               break
+            case FILE_TYPE_SET.BRUKER_MRI:
+              state[node.id] = {
+                fileType,
+                param: {},
+              }
+              break
+            case FILE_TYPE_SET.BRUKER_CT:
+              state[node.id] = {
+                fileType,
+                param: {},
+              }
+              break
           }
         }
       })
@@ -232,6 +244,16 @@ export const inputNodeSlice = createSlice({
                   fileType: FILE_TYPE_SET.WIDEFIELD,
                   param: {},
                 }
+              } else if (node.data.fileType === FILE_TYPE_SET.BRUKER_MRI) {
+                newState[node.id] = {
+                  fileType: FILE_TYPE_SET.BRUKER_MRI,
+                  param: {},
+                }
+              } else if (node.data.fileType === FILE_TYPE_SET.BRUKER_CT) {
+                newState[node.id] = {
+                  fileType: FILE_TYPE_SET.BRUKER_CT,
+                  param: {},
+                }
               }
             }
           })
@@ -286,6 +308,18 @@ export const inputNodeSlice = createSlice({
                 } else if (node.data.fileType === FILE_TYPE_SET.WIDEFIELD) {
                   newState[node.id] = {
                     fileType: FILE_TYPE_SET.WIDEFIELD,
+                    selectedFilePath: node.data.path as string,
+                    param: {},
+                  }
+                } else if (node.data.fileType === FILE_TYPE_SET.BRUKER_MRI) {
+                  newState[node.id] = {
+                    fileType: FILE_TYPE_SET.BRUKER_MRI,
+                    selectedFilePath: node.data.path as string,
+                    param: {},
+                  }
+                } else if (node.data.fileType === FILE_TYPE_SET.BRUKER_CT) {
+                  newState[node.id] = {
+                    fileType: FILE_TYPE_SET.BRUKER_CT,
                     selectedFilePath: node.data.path as string,
                     param: {},
                   }

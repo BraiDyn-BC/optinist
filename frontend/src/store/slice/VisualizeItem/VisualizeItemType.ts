@@ -57,6 +57,8 @@ export type DisplayDataItem =
   | MatlabItem
   | Thorlabs2PExperimentItem
   | WidefieldExperimentItem
+  | BrukerMRIExperimentItem
+  | BrukerCTExperimentItem
 
 export interface DisplayDataItemBaseType extends ItemBaseType<"displayData"> {
   filePath: string | null
@@ -181,4 +183,12 @@ export interface Thorlabs2PExperimentItem extends DisplayDataItemBaseType {
 
 export interface WidefieldExperimentItem extends DisplayDataItemBaseType {
   dataType: typeof DATA_TYPE_SET.WIDEFIELD
+}
+
+export interface BrukerMRIExperimentItem extends DisplayDataItemBaseType {
+  dataType: typeof DATA_TYPE_SET.BRUKER_MRI
+}
+
+export interface BrukerCTExperimentItem extends DisplayDataItemBaseType {
+  dataType: typeof DATA_TYPE_SET.BRUKER_CT
 }

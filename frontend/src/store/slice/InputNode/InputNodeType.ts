@@ -10,6 +10,8 @@ export const FILE_TYPE_SET = {
   MICROSCOPE: "microscope",
   THORLABS2P: "thorlabs2p",
   WIDEFIELD: "widefield",
+  BRUKER_MRI: "brukerMRI",
+  BRUKER_CT: "brukerCT",
 } as const
 
 export type FILE_TYPE = (typeof FILE_TYPE_SET)[keyof typeof FILE_TYPE_SET]
@@ -26,6 +28,8 @@ export type InputNodeType =
   | MicroscopeInputNode
   | Thorlabs2PImagingExperimentNode
   | WidefieldImagingExperimentNode
+  | BrukerMRIExperimentNode
+  | BrukerCTExperimentNode
 
 interface InputNodeBaseType<
   T extends FILE_TYPE,
@@ -76,5 +80,15 @@ export interface Thorlabs2PImagingExperimentNode
 
 export interface WidefieldImagingExperimentNode
   extends InputNodeBaseType<"widefield", Record<never, never>> {
+  selectedFilePath?: string
+}
+
+export interface BrukerMRIExperimentNode
+  extends InputNodeBaseType<"brukerMRI", Record<never, never>> {
+  selectedFilePath?: string
+}
+
+export interface BrukerCTExperimentNode
+  extends InputNodeBaseType<"brukerCT", Record<never, never>> {
   selectedFilePath?: string
 }

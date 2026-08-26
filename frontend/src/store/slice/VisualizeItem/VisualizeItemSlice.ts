@@ -33,6 +33,8 @@ import {
   MatlabItem,
   Thorlabs2PExperimentItem,
   WidefieldExperimentItem,
+  BrukerMRIExperimentItem,
+  BrukerCTExperimentItem,
   VISUALIZE_ITEM_SLICE_NAME,
 } from "store/slice/VisualizeItem/VisualizeItemType"
 import {
@@ -185,6 +187,14 @@ const widefieldExperimentInitialValue: WidefieldExperimentItem = {
   ...displayDataCommonInitialValue,
   dataType: DATA_TYPE_SET.WIDEFIELD,
 }
+const brukerMRIExperimentInitialValue: BrukerMRIExperimentItem = {
+  ...displayDataCommonInitialValue,
+  dataType: DATA_TYPE_SET.BRUKER_MRI,
+}
+const brukerCTExperimentInitialValue: BrukerCTExperimentItem = {
+  ...displayDataCommonInitialValue,
+  dataType: DATA_TYPE_SET.BRUKER_CT,
+}
 
 function getDisplayDataItemInitialValue(dataType: DATA_TYPE) {
   switch (dataType) {
@@ -224,6 +234,10 @@ function getDisplayDataItemInitialValue(dataType: DATA_TYPE) {
       return thorlabsExperimentInitialValue
     case DATA_TYPE_SET.WIDEFIELD:
       return widefieldExperimentInitialValue
+    case DATA_TYPE_SET.BRUKER_MRI:
+      return brukerMRIExperimentInitialValue
+    case DATA_TYPE_SET.BRUKER_CT:
+      return brukerCTExperimentInitialValue
   }
 }
 

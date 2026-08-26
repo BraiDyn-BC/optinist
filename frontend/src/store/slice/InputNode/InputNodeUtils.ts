@@ -8,6 +8,8 @@ import {
   MicroscopeInputNode,
   Thorlabs2PImagingExperimentNode,
   WidefieldImagingExperimentNode,
+  BrukerMRIExperimentNode,
+  BrukerCTExperimentNode,
 } from "store/slice/InputNode/InputNodeType"
 
 export function isImageInputNode(
@@ -50,4 +52,16 @@ export function isWidefieldImagingExperimentNode(
   inputNode: InputNodeType,
 ): inputNode is WidefieldImagingExperimentNode {
   return inputNode.fileType === FILE_TYPE_SET.WIDEFIELD
+}
+
+export function isBrukerMRIExperimentNode(
+  inputNode: InputNodeType,
+): inputNode is BrukerMRIExperimentNode {
+  return inputNode.fileType === FILE_TYPE_SET.BRUKER_MRI
+}
+
+export function isBrukerCTExperimentNode(
+  inputNode: InputNodeType,
+): inputNode is BrukerCTExperimentNode {
+  return inputNode.fileType === FILE_TYPE_SET.BRUKER_CT
 }

@@ -13,6 +13,8 @@ export const FILE_TREE_TYPE_SET = {
   MICROSCOPE: "microscope",
   THORLABS2P: "thorlabs2p",
   WIDEFIELD: "widefield",
+  BRUKER_MRI: "brukerMRI",
+  BRUKER_CT: "brukerCT",
   ALL: "all",
 } as const
 

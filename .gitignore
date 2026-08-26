@@ -27,3 +27,4 @@ tensorflow-*.whl
 !*.env.example
 
 .optinist-storage/
+.nwb

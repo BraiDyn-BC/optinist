@@ -19,8 +19,10 @@ const initialState: HandleTypeColor = {
     SpikingActivityData: MuiColors.orange[500],
     BehaviorData: MuiColors.yellow[500],
     MicroscopeData: MuiColors.purple[500],
-    Thorlabs2PExperiment: MuiColors.brown[500],
-    WidefieldExperiment: MuiColors.blueGrey[500],
+    Thorlabs2PExperiment: MuiColors.lime[500],
+    WidefieldExperiment: MuiColors.teal[500],
+    BrukerMRIExperiment: MuiColors.blueGrey[500],
+    BrukerCTExperiment: MuiColors.grey[500],
   },
   nextKey: 0,
 }
