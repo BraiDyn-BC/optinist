@@ -1,0 +1,8 @@
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
+  - pip
+  - pip:
+    - numpy<2 # Exclude numpy 2.x versions
+    - opencv-python-headless

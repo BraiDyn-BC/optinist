@@ -15,6 +15,7 @@ from studio.app.common.core.snakemake.snakemake_writer import SmkConfigWriter
 from studio.app.common.core.workflow.workflow import NodeType, NodeTypeUtil, RunItem
 from studio.app.common.core.workflow.workflow_params import get_typecheck_params
 from studio.app.common.core.workflow.workflow_writer import WorkflowConfigWriter
+from studio.app.const import FILETYPE
 
 
 class WorkflowRunner:
@@ -116,6 +117,16 @@ class WorkflowRunner:
                     data_rule = data_common_rule.mat()
                 elif node.type == NodeType.MICROSCOPE:
                     data_rule = data_common_rule.microscope()
+                elif node.type == NodeType.THORLABS2P:
+                    data_rule = data_common_rule.experiment(FILETYPE.THORLABS2P)
+                elif node.type == NodeType.WIDEFIELD:
+                    data_rule = data_common_rule.experiment(FILETYPE.WIDEFIELD)
+                elif node.type == NodeType.BRUKER_MRI:
+                    data_rule = data_common_rule.experiment(FILETYPE.BRUKER_MRI)
+                elif node.type == NodeType.BRUKER_CT:
+                    data_rule = data_common_rule.experiment(FILETYPE.BRUKER_CT)
+                else:
+                    raise ValueError(f"unexpected node type: '{node.type}'")
 
                 rule_dict[node.id] = data_rule
 
@@ -132,7 +143,7 @@ class WorkflowRunner:
                 if node.id in endNodeList:
                     last_outputs.append(algo_rule.output)
             else:
-                assert False, f"NodeType doesn't exists: {node.type}"
+                assert False, f"NodeType doesn't exist: {node.type}"
 
         return rule_dict, last_outputs
 

@@ -58,6 +58,10 @@ class NodeType:
     HDF5: str = "HDF5FileNode"
     MATLAB: str = "MatlabFileNode"
     MICROSCOPE: str = "MicroscopeFileNode"
+    THORLABS2P: str = "Thorlabs2PExperimentNode"
+    WIDEFIELD: str = "WidefieldExperimentNode"
+    BRUKER_MRI: str = "BrukerMRIExperimentNode"
+    BRUKER_CT: str = "BrukerCTExperimentNode"
 
     # Data Type (Includes above DataType Nodes)
     DATA: str = "DataNode"
@@ -80,6 +84,10 @@ class NodeTypeUtil:
             NodeType.HDF5,
             NodeType.MATLAB,
             NodeType.MICROSCOPE,
+            NodeType.THORLABS2P,
+            NodeType.WIDEFIELD,
+            NodeType.BRUKER_MRI,
+            NodeType.BRUKER_CT,
         ]:
             return NodeType.DATA
         elif node_type == NodeType.ALGO:
@@ -99,6 +107,10 @@ class NodeTypeUtil:
             FILETYPE.HDF5,
             FILETYPE.MATLAB,
             FILETYPE.MICROSCOPE,
+            FILETYPE.THORLABS2P,
+            FILETYPE.WIDEFIELD,
+            FILETYPE.BRUKER_MRI,
+            FILETYPE.BRUKER_CT,
         ]:
             return NodeType.DATA
         else:

@@ -1,3 +1,5 @@
+from typing_extensions import Self
+
 from studio.app.common.core.snakemake.smk import Rule
 
 
@@ -13,7 +15,7 @@ class RuleBuilder:
         self._matPath = None
         self._path = None
 
-    def set_input(self, input, workspace_id=None) -> "RuleBuilder":
+    def set_input(self, input, workspace_id=None) -> Self:
         if workspace_id:
             if isinstance(input, list):
                 self._input = [f"{workspace_id}/{i}" for i in input]
@@ -23,35 +25,35 @@ class RuleBuilder:
             self._input = input
         return self
 
-    def set_return_arg(self, return_arg) -> "RuleBuilder":
+    def set_return_arg(self, return_arg) -> Self:
         self._return_arg = return_arg
         return self
 
-    def set_params(self, params) -> "RuleBuilder":
+    def set_params(self, params) -> Self:
         self._params = params
         return self
 
-    def set_output(self, output) -> "RuleBuilder":
+    def set_output(self, output) -> Self:
         self._output = output
         return self
 
-    def set_type(self, type) -> "RuleBuilder":
+    def set_type(self, type) -> Self:
         self._type = type
         return self
 
-    def set_nwbfile(self, nwbfile) -> "RuleBuilder":
+    def set_nwbfile(self, nwbfile) -> Self:
         self._nwbfile = nwbfile
         return self
 
-    def set_hdf5Path(self, hdf5Path) -> "RuleBuilder":
+    def set_hdf5Path(self, hdf5Path) -> Self:
         self._hdf5Path = hdf5Path
         return self
 
-    def set_matPath(self, matPath) -> "RuleBuilder":
+    def set_matPath(self, matPath) -> Self:
         self._matPath = matPath
         return self
 
-    def set_path(self, path) -> "RuleBuilder":
+    def set_path(self, path) -> Self:
         self._path = path
         return self
 

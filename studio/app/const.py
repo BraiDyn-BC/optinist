@@ -10,6 +10,10 @@ class FILETYPE:
     BEHAVIOR: str = "behavior"
     MATLAB: str = "matlab"
     MICROSCOPE: str = "microscope"
+    THORLABS2P: str = "thorlabs2p"
+    WIDEFIELD: str = "widefield"
+    BRUKER_MRI: str = "brukerMRI"
+    BRUKER_CT: str = "brukerCT"
 
 
 class ACCEPT_FILE_EXT(Enum):
@@ -18,8 +22,22 @@ class ACCEPT_FILE_EXT(Enum):
     HDF5_EXT = [".hdf5", ".nwb", ".HDF5", ".NWB"]
     MATLAB_EXT = [".mat"]
     MICROSCOPE_EXT = [".nd2", ".oir", ".isxd", ".thor.zip"]
+    THORLABS2P_EXT = [".xml"]
+    WIDEFIELD_EXT = [".tif"]
+    BRUKER_MRI_EXT = [".nii", ".nii.gz"]
+    BRUKER_CT_EXT = [".log"]
 
-    ALL_EXT = TIFF_EXT + CSV_EXT + HDF5_EXT + MATLAB_EXT + MICROSCOPE_EXT
+    ALL_EXT = sum([
+        TIFF_EXT,
+        CSV_EXT,
+        HDF5_EXT,
+        MATLAB_EXT,
+        MICROSCOPE_EXT,
+        THORLABS2P_EXT,
+        WIDEFIELD_EXT,
+        BRUKER_MRI_EXT,
+        BRUKER_CT_EXT,
+    ], start=[])
 
 
 ORIGINAL_DATA_EXT = ".orig"

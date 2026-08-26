@@ -1,15 +1,30 @@
+from typing import Optional
 import h5py
 
 from studio.app.common.core.snakemake.smk import Rule
 from studio.app.common.dataclass import CsvData, ImageData, TimeSeriesData
 from studio.app.const import FILETYPE
 from studio.app.optinist.core.nwb.nwb import NWBDATASET
+from studio.app.optinist.dataclass.bruker_CT import BrukerCTExperiment
+from studio.app.optinist.dataclass.bruker_MRI import BrukerMRIExperiment
 from studio.app.optinist.dataclass.iscell import IscellData
 from studio.app.optinist.dataclass.microscope import MicroscopeData
+from studio.app.optinist.dataclass.thorlabs2p import Thorlabs2PExperiment
+from studio.app.optinist.dataclass.widefield import WidefieldExperiment
 from studio.app.optinist.routers.mat import MatGetter
+
+from studio.app.common.core.logger import AppLogger
+logger = AppLogger.get_logger()
 
 
 class FileWriter:
+    _EXPERIMENT_TYPES = {
+        FILETYPE.BRUKER_CT: BrukerCTExperiment,
+        FILETYPE.BRUKER_MRI: BrukerMRIExperiment,
+        FILETYPE.THORLABS2P: Thorlabs2PExperiment,
+        FILETYPE.WIDEFIELD: WidefieldExperiment,
+    }
+
     @classmethod
     def csv(cls, rule_config: Rule, nodeType):
         info = {
@@ -65,6 +80,15 @@ class FileWriter:
         nwbfile = rule_config.nwbfile
         nwbfile["image_series"]["external_file"] = info[rule_config.return_arg]
         info["nwbfile"] = {"input": nwbfile}
+        return info
+
+    @classmethod
+    def experiment(cls, rule_config: Rule, node_type: Optional[str] = None):
+        if node_type is None:
+            node_type = rule_config.type
+        info = dict()
+        info[rule_config.return_arg] = cls._EXPERIMENT_TYPES[node_type](rule_config.input)
+        info["nwbfile"] = dict(input=rule_config.nwbfile)
         return info
 
     @classmethod

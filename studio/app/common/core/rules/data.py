@@ -50,6 +50,13 @@ def main():
             outputfile = FileWriter.mat(rule_config)
         elif rule_config.type == FILETYPE.MICROSCOPE:
             outputfile = FileWriter.microscope(rule_config)
+        elif rule_config.type in [
+            FILETYPE.THORLABS2P,
+            FILETYPE.WIDEFIELD,
+            FILETYPE.BRUKER_MRI,
+            FILETYPE.BRUKER_CT,
+        ]:
+            outputfile = FileWriter.experiment(rule_config)
         else:
             assert False, f"Invalid file type: {rule_config.type}"
 

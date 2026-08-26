@@ -215,6 +215,34 @@ async def get_files(
             dirname=path,
             lazy=lazy,
         )
+    elif file_type == FILETYPE.THORLABS2P:
+        return DirTreeGetter.get_tree(
+            workspace_id,
+            ACCEPT_FILE_EXT.THORLABS2P_EXT.value,
+            dirname=path,
+            lazy=lazy,
+        )
+    elif file_type == FILETYPE.WIDEFIELD:
+        return DirTreeGetter.get_tree(
+            workspace_id,
+            ACCEPT_FILE_EXT.WIDEFIELD_EXT.value,
+            dirname=path,
+            lazy=lazy,
+        )
+    elif file_type == FILETYPE.BRUKER_MRI:
+        return DirTreeGetter.get_tree(
+            workspace_id,
+            ACCEPT_FILE_EXT.BRUKER_MRI_EXT.value,
+            dirname=path,
+            lazy=lazy,
+        )
+    elif file_type == FILETYPE.BRUKER_CT:
+        return DirTreeGetter.get_tree(
+            workspace_id,
+            ACCEPT_FILE_EXT.BRUKER_CT_EXT.value,
+            dirname=path,
+            lazy=lazy,
+        )
     else:
         return []
 
