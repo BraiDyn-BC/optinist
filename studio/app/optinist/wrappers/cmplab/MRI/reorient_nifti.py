@@ -37,7 +37,7 @@ def reorient_nifti(
 
     # 1. Set up logging if needed
     function_id = ExptOutputPathIds(output_dir).function_id
-    logger.info(f"start normalize_orientation: {function_id}")
+    logger.info(f"start reorient_nifti: {function_id}")
     logger.info(f"input NIfTI path: {input_file.path}")
     logger.info(f"output dir: {output_dir}")
 
@@ -47,8 +47,8 @@ def reorient_nifti(
     # 3. Set default parameters and update with user params
     defaults = dict(
         machine_orientation_setting='head_prone',
-        change_file_name=False,
-        file_name='',
+        change_file_base=False,
+        file_base='',
     )
     if params is not None:
         defaults.update(params)
@@ -59,8 +59,8 @@ def reorient_nifti(
 
     input_path = Path(input_file.path)
     file_name = None
-    if defaults['change_file_name'] == True:
-        file_name = defaults['file_name']
+    if defaults['change_file_base'] == True:
+        file_name = defaults['file_base']
         if (file_name is None) or (len(file_name.strip()) == 0):
             file_name = None
     if file_name is None:
@@ -93,7 +93,7 @@ def reorient_nifti(
     nib.save(can, output_path)
     info = {
         "reoriented": NIfTIFileRef(
-            output_path, file_name="normalized",
+            output_path, file_name="reoriented",
         ),
         "preview": ImageData(
             prev, output_dir=output_dir, file_name="preview",
