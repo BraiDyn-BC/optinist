@@ -6,6 +6,7 @@ import {
   FILE_TYPE_SET,
   MatlabInputNode,
   MicroscopeInputNode,
+  NIfTIFileRefNode,
   Thorlabs2PImagingExperimentNode,
   WidefieldImagingExperimentNode,
   BrukerMRIExperimentNode,
@@ -40,6 +41,12 @@ export function isMicroscopeInputNode(
   inputNode: InputNodeType,
 ): inputNode is MicroscopeInputNode {
   return inputNode.fileType === FILE_TYPE_SET.MICROSCOPE
+}
+
+export function isNIfTIFileRefNode(
+  inputNode: InputNodeType,
+): inputNode is NIfTIFileRefNode {
+  return inputNode.fileType === FILE_TYPE_SET.NIFTI
 }
 
 export function isThorlabs2PImagingExperimentNode(

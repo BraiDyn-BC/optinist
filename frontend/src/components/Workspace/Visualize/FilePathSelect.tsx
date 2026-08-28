@@ -230,6 +230,8 @@ function toDataTypeFromFileType(fileType: FILE_TYPE) {
     case FILE_TYPE_SET.MATLAB:
     case FILE_TYPE_SET.MICROSCOPE:
       return DATA_TYPE_SET.MATLAB
+    case FILE_TYPE_SET.NIFTI:
+      return DATA_TYPE_SET.NIFTI
     case FILE_TYPE_SET.THORLABS2P:
       return DATA_TYPE_SET.THORLABS2P
     case FILE_TYPE_SET.WIDEFIELD:

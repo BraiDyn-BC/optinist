@@ -10,6 +10,7 @@ class FILETYPE:
     BEHAVIOR: str = "behavior"
     MATLAB: str = "matlab"
     MICROSCOPE: str = "microscope"
+    NIFTI: str = "nifti"
     THORLABS2P: str = "thorlabs2p"
     WIDEFIELD: str = "widefield"
     BRUKER_MRI: str = "brukerMRI"
@@ -22,9 +23,10 @@ class ACCEPT_FILE_EXT(Enum):
     HDF5_EXT = [".hdf5", ".nwb", ".HDF5", ".NWB"]
     MATLAB_EXT = [".mat"]
     MICROSCOPE_EXT = [".nd2", ".oir", ".isxd", ".thor.zip"]
+    NIFTI_EXT = [".nii", ".nii.gz"]
     THORLABS2P_EXT = [".xml"]
     WIDEFIELD_EXT = [".tif"]
-    BRUKER_MRI_EXT = [".nii", ".nii.gz"]
+    BRUKER_MRI_EXT = []  # FIXME: can it be the same as `NIFTI_EXT`?
     BRUKER_CT_EXT = [".log"]
 
     ALL_EXT = sum([
@@ -33,6 +35,7 @@ class ACCEPT_FILE_EXT(Enum):
         HDF5_EXT,
         MATLAB_EXT,
         MICROSCOPE_EXT,
+        NIFTI_EXT,
         THORLABS2P_EXT,
         WIDEFIELD_EXT,
         BRUKER_MRI_EXT,

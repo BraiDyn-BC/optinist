@@ -8,11 +8,17 @@ from studio.app.optinist.wrappers.cmplab import cmplab_wrapper_dict
 from studio.app.optinist.wrappers.brukerCT import brukerCT_wrapper_dict
 
 wrapper_dict = {}
-wrapper_dict.update(**caiman_wrapper_dict)
-wrapper_dict.update(**suite2p_wrapper_dict)
-wrapper_dict.update(**lccd_wrapper_dict)
-wrapper_dict.update(**optinist_wrapper_dict)
-wrapper_dict.update(**maintenance_wrapper_dict)
-wrapper_dict.update(**custom_wrapper_dict)
-wrapper_dict.update(**cmplab_wrapper_dict)
 wrapper_dict.update(**brukerCT_wrapper_dict)
+wrapper_dict.update(**cmplab_wrapper_dict)
+# wrapper_dict.update(**caiman_wrapper_dict)
+# wrapper_dict.update(**suite2p_wrapper_dict)
+# wrapper_dict.update(**lccd_wrapper_dict)
+# wrapper_dict.update(**optinist_wrapper_dict)
+wrapper_dict['Optinist analysis'] = {
+    'Demos': optinist_wrapper_dict['optinist'],
+    'CaImAn': caiman_wrapper_dict['caiman'],
+    'Suite2p': suite2p_wrapper_dict['suite2p'],
+    'LCCD': lccd_wrapper_dict['lccd'],
+}
+wrapper_dict.update(**maintenance_wrapper_dict)
+# wrapper_dict.update(**custom_wrapper_dict)

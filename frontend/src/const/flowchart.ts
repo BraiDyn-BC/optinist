@@ -35,6 +35,7 @@ export const REACT_FLOW_NODE_TYPE_KEY = {
   BehaviorFileNode: "BehaviorFileNode",
   MatlabFileNode: "MatlabFileNode",
   MicroscopeFileNode: "MicroscopeFileNode",
+  NIfTIFileRefNode: "NIfTIFileRefNode",
   Thorlabs2PExperimentNode: "Thorlabs2PImagingExperimentNode",
   WidefieldImagingExperimentNode: "WidefieldImagingExperimentNode",
   BrukerMRIExperimentNode: "BrukerMRIExperimentNode",

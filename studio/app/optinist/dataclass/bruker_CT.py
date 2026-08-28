@@ -14,6 +14,10 @@ CONFIG_INDICATOR = '='
 
 
 class BrukerCTExperiment(BaseData):
+    path: Path
+    files: list[Path]
+    metadata: dict[str, dict[str, Any]]
+
     def __init__(self, logpath: str, file_name="brukerCT"):
         super().__init__(file_name)
         logger.info(f"initialize BrukerCTExperiment (logpath={logpath})")

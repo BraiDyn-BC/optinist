@@ -11,6 +11,7 @@ export const FILE_TREE_TYPE_SET = {
   BEHAVIOR: "behavior",
   MATLAB: "matlab",
   MICROSCOPE: "microscope",
+  NIFTI: "nifti",
   THORLABS2P: "thorlabs2p",
   WIDEFIELD: "widefield",
   BRUKER_MRI: "brukerMRI",

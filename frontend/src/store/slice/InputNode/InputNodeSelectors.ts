@@ -4,6 +4,7 @@ import {
   isImageInputNode,
   isMatlabInputNode,
   isMicroscopeInputNode,
+  isNIfTIFileRefNode,
   isThorlabs2PImagingExperimentNode,
   isWidefieldImagingExperimentNode,
   isBrukerMRIExperimentNode,
@@ -71,6 +72,16 @@ export const selectMicroscopeInputNodeSelectedFilePath =
   (nodeId: string) => (state: RootState) => {
     const node = selectInputNodeById(nodeId)(state)
     if (isMicroscopeInputNode(node)) {
+      return node.selectedFilePath
+    } else {
+      throw new Error("invalid input node type")
+    }
+  }
+
+export const selectNIfTIFileRefNodeSelectedFilePath =
+  (nodeId: string) => (state: RootState) => {
+    const node = selectInputNodeById(nodeId)(state)
+    if (isNIfTIFileRefNode(node)) {
       return node.selectedFilePath
     } else {
       throw new Error("invalid input node type")

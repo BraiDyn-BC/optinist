@@ -150,6 +150,12 @@ export const inputNodeSlice = createSlice({
                 param: {},
               }
               break
+            case FILE_TYPE_SET.NIFTI:
+              state[node.id] = {
+                fileType,
+                param: {},
+              }
+              break
             case FILE_TYPE_SET.THORLABS2P:
               state[node.id] = {
                 fileType,
@@ -234,6 +240,11 @@ export const inputNodeSlice = createSlice({
                   fileType: FILE_TYPE_SET.MICROSCOPE,
                   param: {},
                 }
+              } else if (node.data.fileType === FILE_TYPE_SET.NIFTI) {
+                newState[node.id] = {
+                  fileType: FILE_TYPE_SET.NIFTI,
+                  param: {},
+                }
               } else if (node.data.fileType === FILE_TYPE_SET.THORLABS2P) {
                 newState[node.id] = {
                   fileType: FILE_TYPE_SET.THORLABS2P,
@@ -296,6 +307,12 @@ export const inputNodeSlice = createSlice({
                 } else if (node.data.fileType === FILE_TYPE_SET.MICROSCOPE) {
                   newState[node.id] = {
                     fileType: FILE_TYPE_SET.MICROSCOPE,
+                    selectedFilePath: node.data.path as string,
+                    param: {},
+                  }
+                } else if (node.data.fileType === FILE_TYPE_SET.NIFTI) {
+                  newState[node.id] = {
+                    fileType: FILE_TYPE_SET.NIFTI,
                     selectedFilePath: node.data.path as string,
                     param: {},
                   }

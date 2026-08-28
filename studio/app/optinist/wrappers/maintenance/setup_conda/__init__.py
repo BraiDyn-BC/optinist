@@ -1,5 +1,11 @@
+from studio.app.optinist.wrappers.maintenance.setup_conda.setup_conda_ants import (
+    setup_conda_ants,
+)
 from studio.app.optinist.wrappers.maintenance.setup_conda.setup_conda_caiman import (
     setup_conda_caiman,
+)
+from studio.app.optinist.wrappers.maintenance.setup_conda.setup_conda_cmplab_default import (
+    setup_conda_cmplab_default,
 )
 from studio.app.optinist.wrappers.maintenance.setup_conda.setup_conda_custom import (
     setup_conda_custom,
@@ -15,9 +21,17 @@ from studio.app.optinist.wrappers.maintenance.setup_conda.setup_conda_suite2p im
 )
 
 setup_conda_wrapper_dict = {
+    "setup_conda_ants": {
+        "function": setup_conda_ants,
+        "conda_name": "ants",
+    },
     "setup_conda_caiman": {
         "function": setup_conda_caiman,
         "conda_name": "caiman",
+    },
+    "setup_conda_cmplab_default": {
+        "function": setup_conda_cmplab_default,
+        "conda_name": "cmplab_default",
     },
     "setup_conda_suite2p": {
         "function": setup_conda_suite2p,

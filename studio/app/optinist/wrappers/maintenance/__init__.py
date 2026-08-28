@@ -3,7 +3,7 @@ from studio.app.optinist.wrappers.maintenance.setup_conda import (
 )
 
 maintenance_wrapper_dict = {
-    "maintenance": {
+    "Maintenance": {
         "setup_conda": setup_conda_wrapper_dict,
     }
 }

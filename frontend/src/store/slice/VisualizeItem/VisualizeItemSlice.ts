@@ -31,6 +31,7 @@ import {
   PieItem,
   PolarItem,
   MatlabItem,
+  NIfTIFileRefItem,
   Thorlabs2PExperimentItem,
   WidefieldExperimentItem,
   BrukerMRIExperimentItem,
@@ -179,18 +180,27 @@ const matlabItemInitialValue: MatlabItem = {
   setIndex: false,
   transpose: false,
 }
+// no additional properties for now
+const niftiFileRefInitialValue: NIfTIFileRefItem = {
+  ...displayDataCommonInitialValue,
+  dataType: DATA_TYPE_SET.NIFTI,
+}
+// no additional properties for now
 const thorlabsExperimentInitialValue: Thorlabs2PExperimentItem = {
   ...displayDataCommonInitialValue,
   dataType: DATA_TYPE_SET.THORLABS2P,
 }
+// no additional properties for now
 const widefieldExperimentInitialValue: WidefieldExperimentItem = {
   ...displayDataCommonInitialValue,
   dataType: DATA_TYPE_SET.WIDEFIELD,
 }
+// no additional properties for now
 const brukerMRIExperimentInitialValue: BrukerMRIExperimentItem = {
   ...displayDataCommonInitialValue,
   dataType: DATA_TYPE_SET.BRUKER_MRI,
 }
+// no additional properties for now
 const brukerCTExperimentInitialValue: BrukerCTExperimentItem = {
   ...displayDataCommonInitialValue,
   dataType: DATA_TYPE_SET.BRUKER_CT,
@@ -230,6 +240,8 @@ function getDisplayDataItemInitialValue(dataType: DATA_TYPE) {
       return polarItemInitialValue
     case DATA_TYPE_SET.MATLAB:
       return matlabItemInitialValue
+    case DATA_TYPE_SET.NIFTI:
+      return niftiFileRefInitialValue
     case DATA_TYPE_SET.THORLABS2P:
       return thorlabsExperimentInitialValue
     case DATA_TYPE_SET.WIDEFIELD:

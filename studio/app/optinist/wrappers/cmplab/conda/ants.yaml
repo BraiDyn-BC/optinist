@@ -5,4 +5,6 @@ dependencies:
   - pip
   - pip:
     - numpy<2 # Exclude numpy 2.x versions
-    - opencv-python-headless
+    - nibabel
+    - simpleitk
+    - git+https://github.com/antsx/antspy

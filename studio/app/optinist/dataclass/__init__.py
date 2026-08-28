@@ -5,6 +5,7 @@ from studio.app.optinist.dataclass.caiman import CaimanCnmfData
 from studio.app.optinist.dataclass.fluo import FluoData
 from studio.app.optinist.dataclass.iscell import IscellData
 from studio.app.optinist.dataclass.lccd import LccdData
+from studio.app.optinist.dataclass.nifti import NIfTIFileRef
 from studio.app.optinist.dataclass.nwb import NWBFile
 from studio.app.optinist.dataclass.roi import EditRoiData, RoiData
 from studio.app.optinist.dataclass.spiking_activity import SpikingActivityData
@@ -20,6 +21,7 @@ __all__ = [
     "FluoData",
     "IscellData",
     "LccdData",
+    "NIfTIFileRef"
     "NWBFile",
     "RoiData",
     "SpikingActivityData",

@@ -5,7 +5,6 @@ from studio.app.common.core.experiment.experiment import ExptOutputPathIds
 
 
 logger = AppLogger.get_logger()
-logger.info("load: brukerCT.check")
 
 
 def check(

@@ -91,42 +91,49 @@ export const AlgorithmTreeView = memo(function AlgorithmTreeView() {
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpandIcon={<ChevronRightIcon />}
     >
-      <TreeItem nodeId="Data" label="Files">
+      <TreeItem nodeId="Files" label="Files">
         <InputNodeComponent
-          fileName={"image"}
-          nodeName={"imageData"}
-          fileType={FILE_TYPE_SET.IMAGE}
+          fileName={"NIfTI"}
+          nodeName={"niftiRef"}
+          fileType={FILE_TYPE_SET.NIFTI}
         />
-        <InputNodeComponent
-          fileName={"csv"}
-          nodeName={"csvData"}
-          fileType={FILE_TYPE_SET.CSV}
-        />
-        <InputNodeComponent
-          fileName={"hdf5"}
-          nodeName={"hdf5Data"}
-          fileType={FILE_TYPE_SET.HDF5}
-        />
-        <InputNodeComponent
-          fileName={"fluo"}
-          nodeName={"fluoData"}
-          fileType={FILE_TYPE_SET.FLUO}
-        />
-        <InputNodeComponent
-          fileName={"behavior"}
-          nodeName={"behaviorData"}
-          fileType={FILE_TYPE_SET.BEHAVIOR}
-        />
-        <InputNodeComponent
-          fileName={"matlab"}
-          nodeName={"matlabData"}
-          fileType={FILE_TYPE_SET.MATLAB}
-        />
-        <InputNodeComponent
-          fileName={"microscope"}
-          nodeName={"microscopeData"}
-          fileType={FILE_TYPE_SET.MICROSCOPE}
-        />
+        <TreeItem nodeId="Data" label="Optinist inputs">
+          <InputNodeComponent
+            fileName={"image"}
+            nodeName={"imageData"}
+            fileType={FILE_TYPE_SET.IMAGE}
+          />
+          <InputNodeComponent
+            fileName={"csv"}
+            nodeName={"csvData"}
+            fileType={FILE_TYPE_SET.CSV}
+          />
+          <InputNodeComponent
+            fileName={"hdf5"}
+            nodeName={"hdf5Data"}
+            fileType={FILE_TYPE_SET.HDF5}
+          />
+          <InputNodeComponent
+            fileName={"fluo"}
+            nodeName={"fluoData"}
+            fileType={FILE_TYPE_SET.FLUO}
+          />
+          <InputNodeComponent
+            fileName={"behavior"}
+            nodeName={"behaviorData"}
+            fileType={FILE_TYPE_SET.BEHAVIOR}
+          />
+          <InputNodeComponent
+            fileName={"matlab"}
+            nodeName={"matlabData"}
+            fileType={FILE_TYPE_SET.MATLAB}
+          />
+          <InputNodeComponent
+            fileName={"microscope"}
+            nodeName={"microscopeData"}
+            fileType={FILE_TYPE_SET.MICROSCOPE}
+          />
+        </TreeItem>
       </TreeItem>
       <TreeItem nodeId="Experiment" label="Experiments">
         <InputNodeComponent
@@ -139,11 +146,13 @@ export const AlgorithmTreeView = memo(function AlgorithmTreeView() {
           nodeName={"widefieldData"}
           fileType={FILE_TYPE_SET.WIDEFIELD}
         />
+        {/** FIXME: do not show BrukerMRI for now (as it has no use cases)
         <InputNodeComponent
           fileName={"BrukerMRI"}
           nodeName={"brukerMRIData"}
           fileType={FILE_TYPE_SET.BRUKER_MRI}
         />
+        */}
         <InputNodeComponent
           fileName={"BrukerCT"}
           nodeName={"brukerCTData"}
@@ -212,6 +221,10 @@ const InputNodeComponent = memo(function InputNodeComponent({
         case FILE_TYPE_SET.MICROSCOPE:
           reactFlowNodeType = REACT_FLOW_NODE_TYPE_KEY.MicroscopeFileNode
           fileType = FILE_TYPE_SET.MICROSCOPE
+          break
+        case FILE_TYPE_SET.NIFTI:
+          reactFlowNodeType = REACT_FLOW_NODE_TYPE_KEY.NIfTIFileRefNode
+          fileType = FILE_TYPE_SET.NIFTI
           break
         case FILE_TYPE_SET.THORLABS2P:
           reactFlowNodeType = REACT_FLOW_NODE_TYPE_KEY.Thorlabs2PExperimentNode

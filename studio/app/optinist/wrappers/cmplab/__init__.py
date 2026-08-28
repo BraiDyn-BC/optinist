@@ -1,10 +1,10 @@
 from studio.app.optinist.wrappers.cmplab.test_conversion import test_conversion
 
 cmplab_wrapper_dict = {
-    "cmp-lab": {
+    "Lab algorithms": {
         "test_conversion": {
             "function": test_conversion,
-            "conda_name": "cmplab-default",
+            "conda_name": "cmplab_default",
         },
     },
 }

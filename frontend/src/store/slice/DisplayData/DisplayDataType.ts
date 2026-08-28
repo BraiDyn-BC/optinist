@@ -12,6 +12,7 @@ import {
   PieData,
   PolarData,
   MatlabData,
+  NIfTIFileRefData,
   Thorlabs2PExperimentData,
   WidefieldExperimentData,
   BrukerMRIExperimentData,
@@ -84,6 +85,7 @@ export const DATA_TYPE_SET = {
   PIE: "pie",
   POLAR: "polar",
   MATLAB: "matlab",
+  NIFTI: "nifti",
   THORLABS2P: "thorlabs2p",
   WIDEFIELD: "widefield",
   BRUKER_MRI: "brukerMRI",
@@ -159,6 +161,10 @@ export interface PolarDisplayData extends BaseDisplay<"polar", PolarData> {
   columns: number[]
   index: number[]
 }
+
+// nothing to display (for the time being)
+export interface NIfTIFileRefDisplayData
+  extends BaseDisplay<"nifti", NIfTIFileRefData> {}
 
 // nothing to display (for the time being)
 export interface Thorlabs2PExperimentDisplayData

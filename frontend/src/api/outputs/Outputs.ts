@@ -263,6 +263,15 @@ export async function getPieDataApi(
   return response.data
 }
 
+export type NIfTIFileRefData = string // for the time being
+
+export async function getNIfTIFileRefDataApi(
+  path: string,
+): Promise<{ data: NIfTIFileRefData }> {
+  const response = await axios.get(`${BASE_URL}/outputs/data/${path}`, {})
+  return response.data
+}
+
 export type Thorlabs2PExperimentData = string // for the time being
 
 export async function getThorlabs2PExperimentDataApi(

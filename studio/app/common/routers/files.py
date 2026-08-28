@@ -215,6 +215,13 @@ async def get_files(
             dirname=path,
             lazy=lazy,
         )
+    elif file_type == FILETYPE.NIFTI:
+        return DirTreeGetter.get_tree(
+            workspace_id,
+            ACCEPT_FILE_EXT.NIFTI_EXT.value,
+            dirname=path,
+            lazy=lazy,
+        )
     elif file_type == FILETYPE.THORLABS2P:
         return DirTreeGetter.get_tree(
             workspace_id,

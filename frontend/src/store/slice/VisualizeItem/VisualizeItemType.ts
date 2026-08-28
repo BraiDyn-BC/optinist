@@ -55,6 +55,7 @@ export type DisplayDataItem =
   | PieItem
   | PolarItem
   | MatlabItem
+  | NIfTIFileRefItem
   | Thorlabs2PExperimentItem
   | WidefieldExperimentItem
   | BrukerMRIExperimentItem
@@ -175,6 +176,10 @@ export interface PieItem extends DisplayDataItemBaseType {
 export interface PolarItem extends DisplayDataItemBaseType {
   dataType: typeof DATA_TYPE_SET.POLAR
   selectedIndex: number
+}
+
+export interface NIfTIFileRefItem extends DisplayDataItemBaseType {
+  dataType: typeof DATA_TYPE_SET.NIFTI
 }
 
 export interface Thorlabs2PExperimentItem extends DisplayDataItemBaseType {

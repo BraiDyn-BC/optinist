@@ -8,6 +8,7 @@ export const FILE_TYPE_SET = {
   BEHAVIOR: "behavior",
   MATLAB: "matlab",
   MICROSCOPE: "microscope",
+  NIFTI: "nifti",
   THORLABS2P: "thorlabs2p",
   WIDEFIELD: "widefield",
   BRUKER_MRI: "brukerMRI",
@@ -26,6 +27,7 @@ export type InputNodeType =
   | HDF5InputNode
   | MatlabInputNode
   | MicroscopeInputNode
+  | NIfTIFileRefNode
   | Thorlabs2PImagingExperimentNode
   | WidefieldImagingExperimentNode
   | BrukerMRIExperimentNode
@@ -70,6 +72,11 @@ export interface HDF5InputNode
 
 export interface MicroscopeInputNode
   extends InputNodeBaseType<"microscope", Record<never, never>> {
+  selectedFilePath?: string
+}
+
+export interface NIfTIFileRefNode
+  extends InputNodeBaseType<"nifti", Record<never, never>> {
   selectedFilePath?: string
 }
 
