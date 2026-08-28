@@ -6,7 +6,7 @@ from studio.app.common.core.experiment.experiment import ExptOutputPathIds
 logger = AppLogger.get_logger()
 
 
-def test_conversion(
+def report_image(
     # Required inputs
     input_image: ImageData,  # Fluorescence data from previous processing
     output_dir: str,  # Directory to save output files
