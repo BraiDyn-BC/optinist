@@ -10,7 +10,7 @@ from studio.app.common.core.experiment.experiment import ExptOutputPathIds
 logger = AppLogger.get_logger()
 
 
-def normalize_orientation(
+def reorient_nifti(
     # Required inputs
     input_file: NIfTIFileRef,
     output_dir: str,  # Directory to save output files

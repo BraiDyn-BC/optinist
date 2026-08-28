@@ -1,8 +1,8 @@
-from studio.app.optinist.wrappers.cmplab.MRI.normalize_orientation import normalize_orientation
+from studio.app.optinist.wrappers.cmplab.MRI.reorient_nifti import reorient_nifti
 
 cmplab_MRI_wrapper_dict = {
-    "normalize_orientation": {
-        "function": normalize_orientation,
+    "reorient_nifti": {
+        "function": reorient_nifti,
         "conda_name": "ants",
     },
 }
