@@ -68,6 +68,9 @@ class SmkRule:
     def microscope(self) -> Rule:
         return self.builder.set_type(FILETYPE.MICROSCOPE).build()
 
+    def nifti(self) -> Rule:
+        return self.builder.set_type(FILETYPE.NIFTI).build()
+
     def experiment(self, experimentType: str) -> Rule:
         return self.builder.set_type(experimentType).build()
 

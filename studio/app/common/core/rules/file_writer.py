@@ -9,6 +9,7 @@ from studio.app.optinist.dataclass.bruker_CT import BrukerCTExperiment
 from studio.app.optinist.dataclass.bruker_MRI import BrukerMRIExperiment
 from studio.app.optinist.dataclass.iscell import IscellData
 from studio.app.optinist.dataclass.microscope import MicroscopeData
+from studio.app.optinist.dataclass.nifti import NIfTIFileRef
 from studio.app.optinist.dataclass.thorlabs2p import Thorlabs2PExperiment
 from studio.app.optinist.dataclass.widefield import WidefieldExperiment
 from studio.app.optinist.routers.mat import MatGetter
@@ -80,6 +81,13 @@ class FileWriter:
         nwbfile = rule_config.nwbfile
         nwbfile["image_series"]["external_file"] = info[rule_config.return_arg]
         info["nwbfile"] = {"input": nwbfile}
+        return info
+
+    @classmethod
+    def nifti(cls, rule_config: Rule):
+        info = dict()
+        info[rule_config.return_arg] = NIfTIFileRef(rule_config.input)
+        info["nwbfile"] = dict(input=rule_config.nwbfile)
         return info
 
     @classmethod

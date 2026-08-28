@@ -58,6 +58,7 @@ class NodeType:
     HDF5: str = "HDF5FileNode"
     MATLAB: str = "MatlabFileNode"
     MICROSCOPE: str = "MicroscopeFileNode"
+    NIFTI: str = "NIfTIFileRefNode"
     THORLABS2P: str = "Thorlabs2PExperimentNode"
     WIDEFIELD: str = "WidefieldExperimentNode"
     BRUKER_MRI: str = "BrukerMRIExperimentNode"
@@ -84,6 +85,7 @@ class NodeTypeUtil:
             NodeType.HDF5,
             NodeType.MATLAB,
             NodeType.MICROSCOPE,
+            NodeType.NIFTI,
             NodeType.THORLABS2P,
             NodeType.WIDEFIELD,
             NodeType.BRUKER_MRI,
@@ -107,6 +109,7 @@ class NodeTypeUtil:
             FILETYPE.HDF5,
             FILETYPE.MATLAB,
             FILETYPE.MICROSCOPE,
+            FILETYPE.NIFTI,
             FILETYPE.THORLABS2P,
             FILETYPE.WIDEFIELD,
             FILETYPE.BRUKER_MRI,

@@ -50,6 +50,8 @@ def main():
             outputfile = FileWriter.mat(rule_config)
         elif rule_config.type == FILETYPE.MICROSCOPE:
             outputfile = FileWriter.microscope(rule_config)
+        elif rule_config.type == FILETYPE.NIFTI:
+            outputfile = FileWriter.nifti(rule_config)
         elif rule_config.type in [
             FILETYPE.THORLABS2P,
             FILETYPE.WIDEFIELD,

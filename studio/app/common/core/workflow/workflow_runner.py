@@ -117,6 +117,8 @@ class WorkflowRunner:
                     data_rule = data_common_rule.mat()
                 elif node.type == NodeType.MICROSCOPE:
                     data_rule = data_common_rule.microscope()
+                elif node.type == NodeType.NIFTI:
+                    data_rule = data_common_rule.nifti()
                 elif node.type == NodeType.THORLABS2P:
                     data_rule = data_common_rule.experiment(FILETYPE.THORLABS2P)
                 elif node.type == NodeType.WIDEFIELD:
