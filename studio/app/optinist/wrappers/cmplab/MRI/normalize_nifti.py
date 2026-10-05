@@ -22,13 +22,12 @@ def normalize_nifti(
         norm_preview=ImageData,
         bias_preview=ImageData
     ):
-    """Corrects the rotation and the affine matrix settings of the given NIfTI data.
+    """Performs N4 bias correction and min-max normalization.
 
     Args:
         input_file: Input NIfTI file
         output_dir: Directory where output files should be saved
         params: Optional dictionary of parameters to customize processing
-          - `machine_orientation_setting`: currently only accepts 'head_prone'
         **kwargs: Additional keyword arguments
 
     Returns:

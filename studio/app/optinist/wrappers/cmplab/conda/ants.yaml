@@ -3,6 +3,7 @@ channels:
 dependencies:
   - python=3.9
   - pip
+  - ants  # the command-line library for linux/mac
   - pip:
     - numpy<2 # Exclude numpy 2.x versions
     - nibabel
