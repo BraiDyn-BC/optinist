@@ -84,7 +84,7 @@ export function hasDirectoryBeenRetrieved(
 ): boolean {
   const node = getNodeByPath(path, tree)
   if (node != null && node.isDir) {
-    return node.nodes.filter((node) => node.name == ".lazy_loaded").length == 0
+    return node.nodes.filter((node) => node.name == "loading...").length == 0
   } else {
     throw new Error(`failed to get node: ${path}`)
   }

@@ -94,13 +94,13 @@ class DirTreeGetter:
                 )
             elif (
                 os.path.isdir(search_dirpath)
-                and len(cls.accept_files(search_dirpath, file_types)) > 0
+                # and len(cls.accept_files(search_dirpath, file_types)) > 0
             ):
                 if lazy:
                     children = [
                         TreeNode(
-                            path=join_filepath([relative_path, '.lazy_loaded']),
-                            name='.lazy_loaded',
+                            path=join_filepath([relative_path, 'loading...']),
+                            name='loading...',
                             isdir=False,
                             nodes=[],
                             shape=[0, 0]
